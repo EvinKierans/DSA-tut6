@@ -45,6 +45,21 @@ public class KMP {
 
     public static int[] failureFunction(String P) {
         int[] F = new int[P.length()];
+        char[] PArray = P.toCharArray();
+        int i=1;
+        int j=0;
+        do {
+            if(PArray[i]==PArray[j]) {
+                F[i] = j + 1;
+                i++;
+                j++;
+            } else if(j > 0) {
+                j = F[ j - 1];
+            } else {
+                F[i] = 0;
+                i++;
+            }
+        } while(i < P.length());
         return F;
     }
 }
